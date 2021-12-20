@@ -31,3 +31,6 @@ hs_err_pid*
 /hybrid-manage/.gitignore
 /hybrid-manage/mvnw
 /hybrid-manage/mvnw.cmd
+/hybrid-business/.mvn/
+/hybrid-manage/.mvn/
+/hybrid-common/target/
