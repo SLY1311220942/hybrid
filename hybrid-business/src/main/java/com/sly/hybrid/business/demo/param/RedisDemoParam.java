@@ -1,5 +1,6 @@
-package com.sly.hybrid.business.blog.param;
+package com.sly.hybrid.business.demo.param;
 
+import com.sly.hybrid.param.BaseParam;
 import com.sly.myplugin.validate.annotation.IntValue;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +17,9 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-public class RedisDemoParam implements Serializable {
+public class RedisDemoParam extends BaseParam {
     @NotNull
-    @IntValue(message = "非法的redis源", values = {1, 2, 3})
+    @IntValue(message = "非法的redis源", values = {1, 2, 3, 4})
     private Integer redisSource;
     @NotBlank(message = "键不能为空！")
     private String key;

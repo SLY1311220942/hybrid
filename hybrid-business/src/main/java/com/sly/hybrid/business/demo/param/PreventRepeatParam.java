@@ -1,4 +1,4 @@
-package com.sly.hybrid.business.blog.param;
+package com.sly.hybrid.business.demo.param;
 
 /**
  * @author SLY

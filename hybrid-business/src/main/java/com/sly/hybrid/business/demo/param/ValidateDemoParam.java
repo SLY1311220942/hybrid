@@ -1,4 +1,4 @@
-package com.sly.hybrid.business.blog.param;
+package com.sly.hybrid.business.demo.param;
 
 import com.sly.myplugin.validate.annotation.IntValue;
 import lombok.Getter;

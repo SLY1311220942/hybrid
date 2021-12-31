@@ -1,4 +1,4 @@
-package com.sly.hybrid.business.blog.service;
+package com.sly.hybrid.business.demo.service;
 
 import com.sly.myplugin.base.result.Result;
 import lombok.extern.slf4j.Slf4j;
