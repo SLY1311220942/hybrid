@@ -5,6 +5,7 @@ import com.sly.hybrid.business.demo.param.PreventRepeatParam;
 import com.sly.hybrid.business.demo.param.RedisDemoParam;
 import com.sly.hybrid.business.demo.param.ValidateDemoParam;
 import com.sly.hybrid.business.demo.service.DemoService;
+import com.sly.hybrid.rabbitmq.exchange.ExchangeConfig;
 import com.sly.myplugin.base.result.Result;
 import com.sly.myplugin.preventrepeat.annotation.PreventRepeat;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -93,7 +96,7 @@ public class DemoController {
     /**
      * 线程同步demo
      *
-     * @return Result
+     * @return {@link Result}
      * @author SLY
      * @date 2021/12/7
      */
@@ -106,7 +109,7 @@ public class DemoController {
     /**
      * 线程异步demo
      *
-     * @return Result
+     * @return {@link Result}
      * @author SLY
      * @date 2021/12/7
      */
@@ -114,6 +117,18 @@ public class DemoController {
     public Result<?> threadAsyncDemo() {
         demoService.asyncDemo();
         return Result.success();
+    }
+
+    /**
+     * 发送邮件demo
+     *
+     * @author SLY
+     * @date 2022/1/5
+     * @return {@link Result}
+     */
+    @RequestMapping("/sendEmail")
+    public Result<?> sendEmail(){
+        return demoService.sendEmail();
     }
 
     /**
@@ -136,10 +151,36 @@ public class DemoController {
 
         rabbitTemplate.convertAndSend("amq.direct", "order", order, message -> {
             // 设置延迟，单位：毫秒值
-            message.getMessageProperties().setHeader("delay", 20000);
+            message.getMessageProperties().setDelay(20000);
             return message;
         }, correlationData);
 
+//        rabbitTemplate.convertAndSend("amq.direct", "order", order, message -> {
+//            // 设置延迟，单位：毫秒值
+//            message.getMessageProperties().setDelay(2000000);
+//            return message;
+//        });
+
+        return Result.success();
+    }
+
+    /**
+     * 发送延时消息
+     *
+     * @return {@link Result}
+     * @author SLY
+     * @date 2021/12/28
+     */
+    @RequestMapping("/rabbitmqDelayQueue")
+    public Result<?> rabbitmqDelayQueue() {
+        Order order = new Order();
+        order.setId("1");
+        order.setOrderSn("000001");
+        rabbitTemplate.convertAndSend(ExchangeConfig.LAZY_EXCHANGE, "order", order, message -> {
+            // 设置延迟，单位：毫秒值
+            message.getMessageProperties().setDelay(20000);
+            return message;
+        });
         return Result.success();
     }
 

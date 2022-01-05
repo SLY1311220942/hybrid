@@ -49,6 +49,7 @@ public class RedisHelper {
      * @author SLY
      * @date 2021/12/30
      */
+    @SuppressWarnings("unchecked")
     public <T> T get(String key, Class<T> clazz) {
         return (T) redisTemplate.opsForValue().get(key);
     }
@@ -114,7 +115,7 @@ public class RedisHelper {
      * @date 2021/12/30
      */
     public boolean exists(String key) {
-        return redisTemplate.hasKey(key);
+        return Boolean.TRUE.equals(redisTemplate.hasKey(key));
     }
 
     /**
@@ -169,12 +170,23 @@ public class RedisHelper {
     /**
      * 设置过期时间点
      *
-     * @param key  键
+     * @param key     键
      * @param instant 过期时间点
      * @author SLY
      * @date 2021/12/30
      */
     public void setExpireAt(String key, Instant instant) {
         redisTemplate.expireAt(key, instant);
+    }
+
+    /**
+     * 删除值
+     *
+     * @param key 键
+     * @author SLY
+     * @date 2022/1/2
+     */
+    public void delete(String key) {
+        redisTemplate.delete(key);
     }
 }

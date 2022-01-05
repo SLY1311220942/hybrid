@@ -2,10 +2,28 @@ package com.sly.hybrid.constant;
 
 /**
  * 状态常量类
+ *
  * @author SLY
  * @date 2021/12/30
  */
 public class StatusConst {
+    /**
+     * 删除状态:未删除
+     */
+    public static final int DEL_NO = 0;
+    /**
+     * 删除状态:已删除
+     */
+    public static final int DEL_YES = 1;
+
+    /**
+     * 性别:女
+     */
+    public static final int GENDER_WOMEN = 0;
+    /**
+     * 性别:男
+     */
+    public static final int GENDER_MEN = 1;
 
     /** 博客状态 */
     public enum BlogStatus {

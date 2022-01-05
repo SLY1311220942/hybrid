@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sly.hybrid.business.user.mapper.UserMapper">
+
+    <!--根据账号查询用户信息-->
+    <select id="findUserByAccount" resultType="com.sly.hybrid.business.user.model.po.User">
+        SELECT * FROM `b_user` bu WHERE bu.`account`=#{account}
+    </select>
+
+    <!--新增-->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO `b_user`
+            (`account`, `username`, `password`, `head_portrait`, `brief_introduction`,
+            `real_name`, `id_card`, `gender`, `email`, `phone`,
+            `birthday`, `user_status`, `create_time`, `update_time`, `del_status`)
+        VALUES
+            (#{account}, #{username}, #{password}, #{headPortrait}, #{briefIntroduction},
+            #{realName}, #{idCard}, #{gender}, #{email}, #{phone},
+            #{birthday}, #{userStatus}, #{createTime}, #{updateTime}, #{delStatus})
+    </insert>
+
+</mapper>

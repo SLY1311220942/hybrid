@@ -11,6 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
+import java.util.Objects;
 
 /**
  * token工具类
@@ -20,7 +21,9 @@ import java.time.Duration;
  */
 @Component
 public class TokenUtil {
-    /** 登录过期时间 */
+    /**
+     * 登录过期时间
+     */
     private static final Duration LOGIN_EXPIRE = Duration.ofDays(7);
 
 
@@ -35,9 +38,12 @@ public class TokenUtil {
      * @date 2021/12/30
      */
     public UserToken getUserToken() {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         String token = request.getHeader(LoginConst.USER_TOKEN_HEADER);
-        return redisHelper.get(token, UserToken.class);
+        if (StrUtil.isNotBlank(token)) {
+            return redisHelper.get(token, UserToken.class);
+        }
+        return null;
     }
 
     /**
@@ -48,7 +54,7 @@ public class TokenUtil {
      * @date 2021/12/30
      */
     public String getToken() {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
         return request.getHeader(LoginConst.USER_TOKEN_HEADER);
     }
 

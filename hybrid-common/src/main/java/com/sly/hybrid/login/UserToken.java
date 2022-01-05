@@ -1,5 +1,6 @@
 package com.sly.hybrid.login;
 
+import com.sly.hybrid.business.user.model.po.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,9 +22,6 @@ public class UserToken implements Serializable {
     /** 用户名称 */
     private String username;
 
-    /** 密码 */
-    private String password;
-
     /** 头像地址 */
     private String headPortrait;
 
@@ -42,9 +40,6 @@ public class UserToken implements Serializable {
     /** 邮箱 */
     private String email;
 
-    /** 手机 */
-    private String phone;
-
     /** 生日 */
     private Date birthday;
 
@@ -54,4 +49,23 @@ public class UserToken implements Serializable {
      */
     private String userStatus;
 
+    /**
+     * token
+     */
+    private String token;
+
+    public UserToken() {
+    }
+
+    public UserToken(User user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.headPortrait = user.getHeadPortrait();
+        this.briefIntroduction = user.getBriefIntroduction();
+        this.realName = user.getRealName();
+        this.gender = user.getGender();
+        this.email = user.getEmail();
+        this.birthday = user.getBirthday();
+        this.userStatus = user.getUserStatus();
+    }
 }
