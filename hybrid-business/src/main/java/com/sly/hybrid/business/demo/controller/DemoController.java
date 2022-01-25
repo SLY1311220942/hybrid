@@ -176,7 +176,7 @@ public class DemoController {
         Order order = new Order();
         order.setId("1");
         order.setOrderSn("000001");
-        rabbitTemplate.convertAndSend(ExchangeConfig.LAZY_EXCHANGE, "order", order, message -> {
+        rabbitTemplate.convertAndSend(ExchangeConfig.LAZY_EXCHANGE, "delay.key1", order, message -> {
             // 设置延迟，单位：毫秒值
             message.getMessageProperties().setDelay(20000);
             return message;

@@ -25,6 +25,8 @@ public enum ResultCode implements IResultCode {
     REGISTER_ACCOUNT_EMAIL_ILLEGAL(Code.CODE_101002, "注册账号邮箱格式不合法！"),
     /** 密码格式不正确 */
     REGISTER_PASSWORD_ILLEGAL(Code.CODE_101003, "密码格式不正确，密码必须包含数字和字母，长度为8-16位字符！"),
+    /** 未找到待激活用户 */
+    REGISTER_USER_ACTIVE_UN_FIND(Code.CODE_101004, "未找到待激活用户！"),
     ;
 
     ResultCode(String code, String msg) {
@@ -50,8 +52,10 @@ public enum ResultCode implements IResultCode {
         public static final String CODE_100002 = "100002";
         public static final String CODE_100003 = "100003";
         public static final String CODE_100004 = "100004";
+
         public static final String CODE_101001 = "101001";
         public static final String CODE_101002 = "101002";
         public static final String CODE_101003 = "101003";
+        public static final String CODE_101004 = "101004";
     }
 }

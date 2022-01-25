@@ -1,6 +1,7 @@
 package com.sly.hybrid.business.login.controller;
 
 import com.sly.hybrid.annotation.IgnoreToken;
+import com.sly.hybrid.business.login.param.ActiveParam;
 import com.sly.hybrid.business.login.param.RegisterParam;
 import com.sly.hybrid.business.login.service.RegisterService;
 import com.sly.myplugin.base.result.Result;
@@ -37,5 +38,20 @@ public class RegisterController {
     @PostMapping("/register")
     public Result<?> register(@Validated RegisterParam param) {
         return registerService.register(param);
+    }
+
+    /**
+     * 激活
+     *
+     * @param param 激活参数 {@link ActiveParam}
+     * @return {@link Result}
+     * @author SLY
+     * @date 2022/1/6
+     */
+    @IgnoreToken
+    @PreventRepeat
+    @RequestMapping("/active")
+    public Result<?> active(@Validated ActiveParam param) {
+        return registerService.active(param);
     }
 }

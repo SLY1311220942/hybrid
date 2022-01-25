@@ -32,8 +32,8 @@ public class DirectCustomer {
 
     }
 
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "order-queue", durable = "true"), key = "order",
-            exchange = @Exchange(value = ExchangeConfig.LAZY_EXCHANGE, durable = "true", type = "direct", ignoreDeclarationExceptions = "true")))
+    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "order-queue", durable = "true"), key = "delay.key1",
+            exchange = @Exchange(value = ExchangeConfig.LAZY_EXCHANGE, durable = "true", type = "x-delayed-message", ignoreDeclarationExceptions = "true")))
     @RabbitHandler
     public void onDelayMessage(Message<Order> message, Channel channel) throws Exception {
         Order order = message.getPayload();

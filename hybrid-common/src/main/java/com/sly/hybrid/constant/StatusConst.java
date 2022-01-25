@@ -53,12 +53,12 @@ public class StatusConst {
 
     /** 用户状态 */
     public enum UserStatus {
-        /** 草稿 */
-        DRIFT("00001010", "待激活"),
-        /** 审核 */
-        VERIFY("00001020", "已激活"),
-        /** 发布 */
-        PUBLISH("00001030", "禁用"),
+        /** 待激活 */
+        WAIT_ACTIVE("00001010", "待激活"),
+        /** 已激活 */
+        ACTIVE("00001020", "已激活"),
+        /** 禁用 */
+        FORBID("00001030", "禁用"),
         ;
         private final String code;
         private final String name;

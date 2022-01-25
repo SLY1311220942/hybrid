@@ -11,4 +11,9 @@ public class RedissonConst {
      * 1.注册使用account作为锁后缀
      */
     public static final String USER_PREFIX = "redisson:user:";
+    /**
+     * 用户激活分布式锁前缀
+     * 1.激活使用activeCode作为锁后缀
+     */
+    public static final String USER_ACTIVE_PREFIX = "redisson:active:";
 }

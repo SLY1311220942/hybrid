@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sly.hybrid.business.dict.mapper.DicCodeMapper">
+
+    <!--根据code查询数据字典-->
+    <select id="findByCode" resultType="com.sly.hybrid.business.dict.model.po.DicCode">
+        SELECT * FROM `b_dic_code` WHERE `code`=#{code}
+    </select>
+
+    <!--根据父节点code查询下级节点列表-->
+    <select id="findChildrenByCode" resultType="com.sly.hybrid.business.dict.model.po.DicCode">
+        SELECT * FROM `b_dic_code`
+        WHERE `parent_code`=#{code} AND `del_status`=0
+        ORDER BY `sort` ASC
+    </select>
+</mapper>

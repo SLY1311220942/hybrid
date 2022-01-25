@@ -9,4 +9,6 @@ package com.sly.hybrid.constant;
 public class RedisConst {
     /** 登录token前缀 */
     public static final String LOGIN_TOKEN_PREFIX = "login:token:";
+    /** 账号激活前缀 */
+    public static final String ACTIVE_CODE_PREFIX = "account:active:";
 }

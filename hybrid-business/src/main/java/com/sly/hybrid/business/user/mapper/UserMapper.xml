@@ -19,4 +19,24 @@
             #{birthday}, #{userStatus}, #{createTime}, #{updateTime}, #{delStatus})
     </insert>
 
+    <!--修改用户状态-->
+    <update id="updateUserStatus">
+        UPDATE `b_user` SET `user_status`=#{userStatus} WHERE `id`=#{id}
+    </update>
+
+    <!--根据id查询用户信息-->
+    <select id="findById" resultType="com.sly.hybrid.business.user.model.po.User">
+        SELECT * FROM `b_user` bu WHERE bu.`id`=#{id}
+    </select>
+
+    <!--修改用户信息-->
+    <update id="updateUserInfo">
+        UPDATE `b_user`
+        SET
+            `username`=#{username},
+            `brief_introduction`=#{briefIntroduction},
+            `birthday`=#{birthday},
+            `phone`=#{phone}
+        WHERE `id`=#{id}
+    </update>
 </mapper>
